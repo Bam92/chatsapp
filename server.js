@@ -1,8 +1,10 @@
 // server.js
 import chalk from 'chalk';
+import "dotenv/config.js";
+
 
 import app from "./app.js"
+const { PORT } = process.env
 
-const port = 4001
 
-app.listen(port, () => console.log(`The server is listening on port ${chalk.green(port)}`))
+app.listen(PORT, () => console.log(chalk.green(`The server is listening on port ${PORT}`)))

@@ -1,8 +1,12 @@
 // app.js
 import express from "express"
 import morgan from 'morgan'
+import "dotenv/config.js";
 
-const app = express()
+import AuthRoutes from "./routes/AuthRoutes.js"
+import UserRoutes from "./controllers/User.js"
+
+const app = express() 
 
 app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['*']);
@@ -11,6 +15,11 @@ app.use((req, res, next) => {
     next();
 })
 app.use(morgan('tiny'))
+app.use(express.json())
+
+
+
+app.use("/api/user", UserRoutes)
 
 app.get('/', (req, res) => res.status(200).json({ "status": 200, "success": true, "message": 'Welcome! The server is working properly' }));
 
